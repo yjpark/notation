@@ -1,8 +1,8 @@
 use notation_bevy::{bevy::prelude::bevy_main, prelude::NotationArgs};
-use frets::assets::FretsAssets;
+use tonnez::assets::TonnezAssets;
 
 #[bevy_main]
 fn main() {
     let args = NotationArgs::parse_args();
-    frets::app::FretsApp::run::<FretsAssets>(args);
+    tonnez::app::FretsApp::run::<FretsAssets>(args);
 }

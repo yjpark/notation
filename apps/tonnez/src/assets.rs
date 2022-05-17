@@ -3,10 +3,10 @@ use notation_bevy::bevy_asset_loader::DynamicAssets;
 use notation_bevy::prelude::{bevy_asset_loader, AssetCollection, MarkDownAsset, ExtraAssets, NotationSettings};
 
 #[derive(AssetCollection)]
-pub struct FretsAssets {
+pub struct TonnezAssets {
 }
 
-impl ExtraAssets for FretsAssets {
+impl ExtraAssets for TonnezAssets {
     fn get_assets(&self) -> Vec<HandleUntyped> {
         vec![
         ]

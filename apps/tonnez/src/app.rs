@@ -4,9 +4,9 @@ use notation_bevy::bevy::input::mouse::{MouseMotion, MouseWheel, MouseScrollUnit
 use notation_bevy::prelude::*;
 use notation_bevy::settings::layout_settings::LayoutMode;
 
-pub struct FretsApp();
+pub struct TonnezApp();
 
-impl FretsApp {
+impl TonnezApp {
     fn extra(app: &mut App) {
         app.add_system_set(
             SystemSet::on_update(NotationAssetsStates::Loaded)
@@ -17,5 +17,5 @@ impl FretsApp {
     }
 }
 
-impl FretsApp {
+impl TonnezApp {
 }
