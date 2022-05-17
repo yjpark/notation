@@ -19,3 +19,4 @@ native = [
 
 [dependencies]
 notation_bevy = { path = "../../crates/notation_bevy" }
+bevy_ecs_tilemap = "0.6.0"

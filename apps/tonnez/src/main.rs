@@ -4,5 +4,5 @@ use tonnez::assets::TonnezAssets;
 #[bevy_main]
 fn main() {
     let args = NotationArgs::parse_args();
-    tonnez::app::FretsApp::run::<FretsAssets>(args);
+    tonnez::app::TonnezApp::run::<TonnezAssets>(args);
 }
