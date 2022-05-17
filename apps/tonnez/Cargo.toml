@@ -1,0 +1,21 @@
+[package]
+name = "tonnez"
+version = "0.1.0"
+edition = "2021"
+description = "Notation Tonnez"
+
+[package.metadata.bundle]
+identifier = "fun.notation.tonnez"
+resources = ["assets"]
+
+[features]
+default = [
+    "notation_bevy/midi",
+]
+
+native = [
+    "notation_bevy/native",
+]
+
+[dependencies]
+notation_bevy = { path = "../../crates/notation_bevy" }

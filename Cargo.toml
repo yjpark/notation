@@ -16,6 +16,7 @@ members = [
     "apps/notation_tabs",
     "apps/notation_viewer",
     "apps/frets",
+    "apps/tonnez",
 ]
 
 # https://rustwasm.github.io/book/reference/code-size.html
