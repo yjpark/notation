@@ -11,11 +11,12 @@ members = [
     "crates/notation_model",
     "crates/notation_audio",
     "crates/notation_midi",
+    "views/fretboard",
     "views/tab_viewer",
     "apps/notation_kb",
     "apps/notation_tabs",
     "apps/notation_viewer",
-    "apps/frets",
+    "apps/notation_toolbox",
 ]
 
 # https://rustwasm.github.io/book/reference/code-size.html
