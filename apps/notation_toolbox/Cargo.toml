@@ -2,21 +2,18 @@
 name = "frets"
 version = "0.1.0"
 edition = "2021"
-description = "Notation Frets"
+description = "Notation Toolbox"
 
 [package.metadata.bundle]
-identifier = "fun.notation.frets"
+identifier = "fun.notation.toolbox"
 resources = ["assets"]
 
 [features]
 default = [
-    "tab_viewer/midi",
 ]
 
 native = [
-    "tab_viewer/native",
-    "tab_viewer/dsl",
 ]
 
 [dependencies]
-tab_viewer = { path = "../../views/tab_viewer" }
+fretboard = { path = "../../views/fretboard" }
