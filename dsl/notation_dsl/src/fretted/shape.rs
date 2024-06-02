@@ -82,6 +82,26 @@ impl ToTokens for ShapeDsl {
 }
 
 impl ShapeDsl {
+    pub fn to_hand_shape_6(&self) -> HandShape6 {
+        let barre = self.barre.unwrap_or(0);
+        let mut frets = [None; 6];
+        for i in 0..6 {
+            frets[i] = self.frets.get(i).unwrap().clone();
+        }
+        let fingers = [None; 6];
+        HandShape6::new_barre(barre, frets, fingers)
+    }
+
+    pub fn to_hand_shape_4(&self) -> HandShape4 {
+        let barre = self.barre.unwrap_or(0);
+        let mut frets = [None; 4];
+        for i in 0..4 {
+            frets[i] = self.frets.get(i).unwrap().clone();
+        }
+        let fingers = [None; 4];
+        HandShape4::new_barre(barre, frets, fingers)
+    }
+
     pub fn to_proto(&self) -> ProtoEntry {
         let ShapeDsl {
             barre,

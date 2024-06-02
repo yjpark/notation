@@ -4366,8 +4366,8 @@ dependencies = [
 name = "notation_cli"
 version = "0.6.0"
 dependencies = [
+ "notation_dsl",
  "notation_svg",
- "notation_tab",
 ]
 
 [[package]]
@@ -4473,6 +4473,7 @@ dependencies = [
  "notation_dsl",
  "notation_macro",
  "notation_proto",
+ "tagu",
 ]
 
 [[package]]
@@ -5570,6 +5571,12 @@ dependencies = [
  "num-traits",
  "slotmap",
 ]
+
+[[package]]
+name = "tagu"
+version = "0.1.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "eddb6b06d20fba9ed21fca3d696ee1b6e870bca0bcf9fa2971f6ae2436de576a"
 
 [[package]]
 name = "tempfile"

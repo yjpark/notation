@@ -9,6 +9,6 @@ homepage = { workspace = true }
 repository = { workspace = true }
 
 [dependencies]
-notation_tab  = { workspace = true }
+notation_dsl  = { workspace = true }
 notation_svg  = { workspace = true }
 

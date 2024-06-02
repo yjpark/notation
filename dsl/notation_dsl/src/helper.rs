@@ -1,5 +1,5 @@
 use crate::prelude::{GetTabDsl, TabDsl, EntryDsl};
-use anyhow::Error;
+use anyhow::{anyhow, Error};
 use quote::ToTokens;
 use std::fs::File;
 use std::io::Read;
@@ -45,4 +45,22 @@ pub fn parse_entries(content: &str) -> Result<Vec<ProtoEntry>, Error> {
     let entry = syn::parse_str::<EntryDsl>(content)?;
     entry.add_proto(&mut entries);
     Ok(entries)
+}
+
+pub fn parse_hand_shape6(content: &str) -> Result<HandShape6, Error> {
+    let entries = parse_entries(content)?;
+    entries.get(0)
+        .and_then(|x| x.as_fretted6())
+        .and_then(|x| x.as_shape())
+        .map(|x| Ok(x.clone()))
+        .unwrap_or(Err(anyhow!("parse_failed: {:#?}", entries.get(0))))
+}
+
+pub fn parse_fretboard6(content: &str) -> Result<Fretboard6, Error> {
+    let entries = parse_entries(content)?;
+    entries.get(0)
+        .and_then(|x| x.as_fretted6())
+        .and_then(|x| x.as_fretboard())
+        .map(|x| Ok(x.clone()))
+        .unwrap_or(Err(anyhow!("parse_failed: {:#?}", entries.get(0))))
 }

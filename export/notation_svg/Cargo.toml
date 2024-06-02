@@ -15,4 +15,5 @@ notation_proto = { workspace = true }
 notation_dsl  = { workspace = true }
 notation_macro  = { workspace = true }
 
+tagu = { workspace = true }
 anyhow = { workspace = true }

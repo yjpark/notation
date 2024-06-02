@@ -81,6 +81,9 @@ bitflags = { version = "2.3", features = ["serde"] }
 bevy_egui = { version = "0.25.0" }
 egui_plot = { version = "0.26.2" }
 
+# svg export
+tagu = "0.1"
+
 # [target.'cfg(target_arch = "wasm32")'.workspace.dependencies]
 wasm-bindgen = "0.2.87"
 console_error_panic_hook = "0.1.7"
