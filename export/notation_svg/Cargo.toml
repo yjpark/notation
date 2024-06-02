@@ -1,0 +1,18 @@
+[package]
+name = "notation_svg"
+version = "0.1.0"
+description = "Fun notation - export as SVG"
+
+edition = { workspace = true }
+license = { workspace = true }
+homepage = { workspace = true }
+repository = { workspace = true }
+
+[lib]
+
+[dependencies]
+notation_proto = { workspace = true }
+notation_dsl  = { workspace = true }
+notation_macro  = { workspace = true }
+
+anyhow = { workspace = true }

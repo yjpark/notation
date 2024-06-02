@@ -17,6 +17,7 @@ pub fn parse_get_tab(content: &str) -> Result<Tab, Error> {
     //println!("Tab: T:{}, S:{}", tab.tracks.len(), tab.sections.len());
     Ok(tab.to_proto())
 }
+
 pub fn parse_get_tab_file(path: &str) -> Result<Tab, Error> {
     let mut file = File::open(path)?;
     let mut content = String::new();
@@ -30,10 +31,16 @@ pub fn parse_tab(content: &str) -> Result<Tab, Error> {
     //println!("Tab: T:{}, S:{}", tab.tracks.len(), tab.sections.len());
     Ok(tab.to_proto())
 }
+
 pub fn parse_tab_file(path: &str) -> Result<Tab, Error> {
     let mut file = File::open(path)?;
     let mut content = String::new();
     file.read_to_string(&mut content)?;
     println!("parse_tab_file: {} -> [{}]", path, content.len());
     parse_tab(&content)
+}
+
+pub fn parse_entry(content: &str) -> Result<Entry, Error> {
+    let entry = syn::parse_str::<EntryDsl>(content)?;
+    Ok(entry.to_proto())
 }
