@@ -1,4 +1,4 @@
-use crate::prelude::{GetTabDsl, TabDsl};
+use crate::prelude::{GetTabDsl, TabDsl, EntryDsl};
 use anyhow::Error;
 use quote::ToTokens;
 use std::fs::File;
@@ -40,7 +40,9 @@ pub fn parse_tab_file(path: &str) -> Result<Tab, Error> {
     parse_tab(&content)
 }
 
-pub fn parse_entry(content: &str) -> Result<Entry, Error> {
+pub fn parse_entries(content: &str) -> Result<Vec<ProtoEntry>, Error> {
+    let mut entries = vec![];
     let entry = syn::parse_str::<EntryDsl>(content)?;
-    Ok(entry.to_proto())
+    entry.add_proto(&mut entries);
+    Ok(entries)
 }

@@ -4363,6 +4363,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "notation_cli"
+version = "0.6.0"
+dependencies = [
+ "notation_svg",
+ "notation_tab",
+]
+
+[[package]]
 name = "notation_core"
 version = "0.6.0"
 dependencies = [
@@ -4455,6 +4463,16 @@ dependencies = [
  "notation_guitar",
  "serde",
  "uuid",
+]
+
+[[package]]
+name = "notation_svg"
+version = "0.6.0"
+dependencies = [
+ "anyhow",
+ "notation_dsl",
+ "notation_macro",
+ "notation_proto",
 ]
 
 [[package]]
