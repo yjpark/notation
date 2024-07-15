@@ -74,8 +74,8 @@ impl Default for IntervalColors {
 }
 
 pub fn hex_linear(hex: &str) -> Color {
-    let color = Color::hex(hex).unwrap();
-    color.as_rgba_linear()
+    let color: Color = Srgba::hex(hex).unwrap().into();
+    LinearRgba::from(color).into()
 }
 
 #[derive(Copy, Clone, PartialEq, Serialize, Deserialize, Debug, Default)]

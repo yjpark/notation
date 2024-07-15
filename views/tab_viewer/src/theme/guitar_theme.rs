@@ -4,6 +4,7 @@ use edger_bevy::bevy_prelude::*;
 use notation_model::prelude::GUITAR_STRING_NUM;
 
 use super::theme_texts::NoteTexts;
+use super::theme_colors::hex_linear;
 
 #[derive(Copy, Clone, PartialEq, Serialize, Deserialize, Debug)]
 pub struct GuitarTheme {
@@ -54,7 +55,7 @@ impl Default for GuitarTheme {
                 text_z: 1.0,
                 horizontal_center: true,
                 syllable_font_size: 18.0,
-                syllable_font_color: Color::hex("FFFFFF").unwrap(),
+                syllable_font_color: hex_linear("FFFFFF"),
             },
             syllable_base_width: 256.0,
         }
