@@ -5,6 +5,7 @@ use serde::{Deserialize, Serialize};
 use edger_bevy::bevy::{prelude::*, sprite::Anchor};
 
 use crate::prelude::{NotationAssets, NotationSettings, ThemeColors};
+use super::theme_colors::hex_linear;
 
 #[derive(Copy, Clone, PartialEq, Serialize, Deserialize, Debug)]
 pub struct ThemeTexts {
@@ -177,7 +178,7 @@ impl Default for LyricsTexts {
             text_y: -8.0,
             text_z: 1.0,
             word_font_size: 20.0,
-            word_font_color: Color::hex("000000").unwrap(),
+            word_font_color: hex_linear("000000"),
         }
     }
 }
@@ -222,7 +223,7 @@ impl Default for NoteTexts {
             text_z: 1.0,
             horizontal_center: false,
             syllable_font_size: 16.0,
-            syllable_font_color: Color::hex("000000").unwrap(),
+            syllable_font_color: hex_linear("000000"),
         }
     }
 }
