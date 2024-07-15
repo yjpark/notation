@@ -32,9 +32,6 @@ pub struct PlayPlugin;
 
 impl Plugin for PlayPlugin {
     fn build(&self, app: &mut App) {
-        app.add_event::<SwitchTabEvent>();
-        app.add_event::<JumpToBarEvent>();
-        app.add_event::<PlayControlEvent>();
         PlayPanelDoLayoutEvent::setup(app);
         app.add_systems(Update, (
             PlayPanel::do_layout,

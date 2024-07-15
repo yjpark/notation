@@ -17,6 +17,9 @@ const DO_TICK_TIMESTEP: f64 = 1.0 / 60.0;
 
 impl Plugin for MidiPlugin {
     fn build(&self, app: &mut App) {
+        app.add_event::<SwitchTabEvent>();
+        app.add_event::<JumpToBarEvent>();
+        app.add_event::<PlayControlEvent>();
         app.init_resource::<MidiClock>();
         app.init_resource::<MidiSettings>();
         app.init_resource::<MidiState>();

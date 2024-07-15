@@ -30,6 +30,7 @@ impl Display for Tab {
         )
     }
 }
+
 impl Tab {
     pub fn bar_units(&self) -> Units {
         self.meta.bar_units()
