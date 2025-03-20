@@ -17,7 +17,7 @@ pub fn on_entry_playing_changed(
         Query<(Entity, &mut PickNoteData, &Children)>,
         Query<(Entity, &mut PickNoteData)>,
     )>,
-    mut font_query: Query<&mut Text>,
+    mut color_query: Query<&mut TextColor>,
 ) {
     if theme._bypass_systems {
         return;
@@ -31,8 +31,8 @@ pub fn on_entry_playing_changed(
                 data.value.playing_state = playing.value;
                 data.update(&mut commands, &theme, entity);
                 for child in note_children.iter() {
-                    if let Ok(mut text) = font_query.get_mut(*child) {
-                        text::set_color(&mut text, data.calc_fret_color(&theme));
+                    if let Ok(mut text_color) = color_query.get_mut(*child) {
+                        text::set_color(&mut text_color, data.calc_fret_color(&theme));
                     }
                 }
             } else if let Ok((entity, mut data)) = note_query.p1().get_mut(*child) {

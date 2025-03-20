@@ -135,11 +135,11 @@ impl SoundPage {
         strength * ((segments as f64) * FRAC_PI_2 * (x - x_offset)).sin() * time.sin()
     }
     /* https://en.wikipedia.org/wiki/String_vibration */
-    fn harmonic_line(
+    fn harmonic_line<'a>(
         theme: &NotationTheme,
         data: &SingleStringData,
         segments: usize,
-    ) -> Line {
+    ) -> Line<'a> {
         let y_offset = if data.separate_mode {
             match segments {
                 1 => 0.5,
@@ -178,10 +178,10 @@ impl SoundPage {
         )).color(color_to_hsva(&theme.colors.of_option_syllable(syllable)))
         .name(format!("harmonic {}", segments))
     }
-    fn tone_line(
+    fn tone_line<'a>(
         theme: &NotationTheme,
         data: &SingleStringData,
-    ) -> Line {
+    ) -> Line<'a> {
         let frequency = data.speed;
         let time = data.time;
         let size = data.size;

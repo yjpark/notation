@@ -81,22 +81,23 @@ impl ShapesTheme {
     ) {
         let mut entity_commands = commands.spawn_empty();
         let font = assets.latin_font.clone();
-        let style = TextStyle {
+        let text_font = TextFont {
             font,
             font_size: self.shape_font_size,
-            color: self.shape_font_color,
+            ..Default::default()
         };
         let justify = JustifyText::Left;
         let anchor = Anchor::Center;
         let shape_text = ProtoEntry::trim_comments(text);
-        entity_commands.insert(Text2dBundle {
-            text: Text::from_section(shape_text.as_str(), style).with_justify(justify),
-            text_anchor: anchor,
-            transform: Transform::from_xyz(self.shape_text_x, self.shape_text_y, self.shape_text_z),
-            ..Default::default()
-        });
-        let text_entity = entity_commands.id();
-        commands.entity(entity).push_children(&[text_entity]);
+        let text_entity = commands.spawn((
+            Text2d::new(shape_text.as_str()),
+            TextLayout::new_with_justify(justify),
+            text_font,
+            TextColor::from(self.shape_font_color),
+            Transform::from_xyz(self.shape_text_x, self.shape_text_y, self.shape_text_z),
+            anchor,
+        )).id();
+        commands.entity(entity).add_children(&[text_entity]);
     }
     pub fn insert_barre_text(
         &self,
@@ -107,20 +108,21 @@ impl ShapesTheme {
     ) {
         let mut entity_commands = commands.spawn_empty();
         let font = assets.latin_font.clone();
-        let style = TextStyle {
+        let text_font = TextFont {
             font,
             font_size: self.barre_font_size,
-            color: self.barre_font_color,
+            ..Default::default()
         };
         let justify = JustifyText::Left;
         let anchor = Anchor::Center;
-        entity_commands.insert(Text2dBundle {
-            text: Text::from_section(barre.to_string(), style).with_justify(justify),
-            transform: Transform::from_xyz(self.barre_text_x, self.barre_text_y, self.barre_text_z),
-            text_anchor: anchor,
-            ..Default::default()
-        });
-        let text_entity = entity_commands.id();
-        commands.entity(entity).push_children(&[text_entity]);
+        let text_entity = commands.spawn((
+            Text2d::new(barre.to_string()),
+            TextLayout::new_with_justify(justify),
+            text_font,
+            TextColor::from(self.barre_font_color),
+            Transform::from_xyz(self.barre_text_x, self.barre_text_y, self.barre_text_z),
+            anchor,
+        )).id();
+        commands.entity(entity).add_children(&[text_entity]);
     }
 }

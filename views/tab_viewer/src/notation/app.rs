@@ -49,7 +49,7 @@ impl NotationApp {
 
     fn setup(app: &mut App) {
         app.insert_resource(ClearColor(UiColors::default().app_background));
-        app.add_plugins(bevy_easings::EasingsPlugin);
+        app.add_plugins(bevy_easings::EasingsPlugin::default());
 
         app.init_resource::<NotationTheme>();
         app.init_resource::<NotationSettings>();
@@ -120,7 +120,7 @@ impl NotationApp {
             //A bit hacky to make sure despawning finished, otherwise might got panic with "Entity not exist"
             if count > 1 {
                 if state._despawn_delay_seconds > 0.0 {
-                    state._despawn_delay_seconds -= time.delta_seconds();
+                    state._despawn_delay_seconds -= time.delta_secs();
                     println!(
                         "load_tab(): Waiting to despawn: {} -> {}",
                         count, state._despawn_delay_seconds
@@ -146,7 +146,7 @@ impl NotationApp {
                 return;
             }
             if state._load_tab_delay_seconds > 0.0 {
-                state._load_tab_delay_seconds -= time.delta_seconds();
+                state._load_tab_delay_seconds -= time.delta_secs();
                 println!(
                     "load_tab(): Waiting to Load tab: -> {}",
                     state._load_tab_delay_seconds

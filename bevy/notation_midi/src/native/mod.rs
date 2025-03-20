@@ -15,11 +15,11 @@ impl MidiPlugin {
 
 fn send_synth_buffer(
     mut hub: NonSendMut<MidiHub>,
-    stream_handle_query: Query<&Handle<StereoStream>>,
+    audio_player_query: Query<&AudioPlayer<StereoStream>>,
     mut assets: ResMut<Assets<StereoStream>>,
 ) {
-    for stream_handle in stream_handle_query.iter() {
-        if let Some(stream) = assets.get_mut(stream_handle) {
+    for audio_player in audio_player_query.iter() {
+        if let Some(stream) = assets.get_mut(&audio_player.0) {
             hub.send_buffer(stream);
         }
     }

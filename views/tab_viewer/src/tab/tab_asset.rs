@@ -55,21 +55,19 @@ impl AssetLoader for TabAssetLoader {
     type Settings = ();
     type Error = LoadError;
 
-    fn load<'a>(
-        &'a self,
-        reader: &'a mut Reader,
-        _settings: &'a Self::Settings,
-        _load_context: &'a mut LoadContext,
-    ) -> BoxedFuture<'a, LoadResult> {
-        Box::pin(async move {
-            let mut bytes = Vec::new();
-            reader.read_to_end(&mut bytes).await?;
-            let tab_asset = match ron::de::from_bytes::<ProtoTab>(&bytes) {
-                Ok(tab) => TabAsset::from(tab),
-                Err(err) => TabAsset::from(TabError::DecodeRonFailed(err)),
-            };
-            Ok(tab_asset)
-        })
+    async fn load(
+        &self,
+        reader: &mut dyn Reader,
+        _settings: &Self::Settings,
+        _load_context: &mut LoadContext<'_>,
+    ) -> Result<Self::Asset, Self::Error> {
+        let mut bytes = Vec::new();
+        reader.read_to_end(&mut bytes).await?;
+        let tab_asset = match ron::de::from_bytes::<ProtoTab>(&bytes) {
+            Ok(tab) => TabAsset::from(tab),
+            Err(err) => TabAsset::from(TabError::DecodeRonFailed(err)),
+        };
+        Ok(tab_asset)
     }
     fn extensions(&self) -> &[&str] {
         &["ron"]

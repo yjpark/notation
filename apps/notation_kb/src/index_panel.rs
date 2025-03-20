@@ -253,11 +253,11 @@ impl IndexPanel {
 
     pub fn index_audio(
         mut index: ResMut<IndexPanel>,
-        stream_handle_query: Query<&Handle<StereoStream>>,
+        audio_player_query: Query<&AudioPlayer<StereoStream>>,
         mut assets: ResMut<Assets<StereoStream>>,
     ) {
-        for stream_handle in stream_handle_query.iter() {
-            if let Some(stream) = assets.get_mut(stream_handle) {
+        for audio_player in audio_player_query.iter() {
+            if let Some(stream) = assets.get_mut(&audio_player.0) {
                 (&mut index)._index_audio(stream);
             }
         }

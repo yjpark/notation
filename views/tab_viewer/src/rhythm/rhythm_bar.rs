@@ -110,7 +110,7 @@ impl RhythmBarData {
         mut query: Query<(Entity, &TabState), Changed<TabState>>,
         mut bar_query: Query<(Entity, &mut RhythmBarData, &Children)>,
         mut beat_query: Query<(Entity, &mut RhythmBeatData)>,
-        mut font_query: Query<&mut Text>,
+        mut text_query: Query<&mut Text2d>,
         mut indicator_query: Query<(Entity, &mut RhythmIndicatorData)>,
     ) {
         if theme._bypass_systems {
@@ -141,9 +141,9 @@ impl RhythmBarData {
                     bar_data.update(&mut commands, &theme, bar_entity);
                 }
                 for child in bar_children.iter() {
-                    if let Ok(mut text) = font_query.get_mut(*child) {
+                    if let Ok(mut text) = text_query.get_mut(*child) {
                         let v = bar_props.bar_number.to_string();
-                        text::set_value(&mut text, v);
+                        text.0 = v;
                     }
                 }
             }

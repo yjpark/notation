@@ -121,7 +121,7 @@ impl MiniMap {
     pub fn update_debug_str(
         app_state: Res<NotationState>,
         background_query: Query<&ColorBackground>,
-        mut font_query: Query<(&Parent, &mut Text)>,
+        mut font_query: Query<(&Parent, &mut Text2d)>,
     ) {
         for (parent, mut text) in font_query.iter_mut() {
             if let Ok(_) = background_query.get(parent.get()) {
@@ -130,7 +130,7 @@ impl MiniMap {
                 } else {
                     "".to_string()
                 };
-                text::set_value(&mut text, str);
+                text.0 = str;
             }
         }
     }

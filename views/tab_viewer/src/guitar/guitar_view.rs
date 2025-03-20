@@ -58,23 +58,19 @@ impl GuitarView {
             entity,
             ViewBundle::from(GuitarView::new(tab.clone())),
         );
-        let sprite_bundle = SpriteBundle {
-            sprite: Sprite{
-                custom_size: Some(Vec2::new(
-                        theme.guitar.image_size.0,
-                        theme.guitar.image_size.1,
-                    )),
-                ..Default::default()
-                },
-            transform: offscreen::transform(),
-            texture: assets.fretboard.clone(),
-            ..Default::default()
-        };
+        let mut sprite = Sprite::sized(Vec2::new(
+            theme.guitar.image_size.0,
+            theme.guitar.image_size.1,
+        ));
+        sprite.image = assets.fretboard.clone();
         let fretboard = tab
             .get_track_of_kind(TrackKind::Guitar)
             .and_then(|x| x.get_fretboard6());
 
-        entity::spawn_child_bundle(commands, guitar_entity, sprite_bundle);
+        entity::spawn_child_bundle(commands, guitar_entity, (
+            sprite,
+            offscreen::transform(),
+        ));
         for string in 1..=6 {
             for upper in [true, false] {
                 let string_data = GuitarStringData::new(string as u8, upper, fretboard);

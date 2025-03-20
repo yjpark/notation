@@ -137,10 +137,7 @@ impl StereoStream {
             buffer: Arc::new(SyncUnsafeCell::new(buffer)),
         };
         let stream_handle = assets.add(stream);
-        commands.spawn(AudioSourceBundle {
-            source: stream_handle,
-            ..default()
-        });
+        commands.spawn(AudioPlayer(stream_handle));
     }
 
     pub fn setup_default_streaming(
